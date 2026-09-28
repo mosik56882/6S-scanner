@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>6S AI</title>
+<style>
+:root{--bg:#F3F8FC;--card:#fff;--ink:#0F2440;--navy:#0B2A5B;--mut:#5F7288;--acc:#1668C1;--teal:#0FA3A3;--line:#E1EAF3;--g:#2BA84A;--y:#F5A524;--r:#E5484D;--sh:0 4px 16px rgba(11,42,91,.08)}
+*{box-sizing:border-box}[hidden]{display:none!important}
+body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",Arial,sans-serif;background:linear-gradient(180deg,#E4F0FA 0,var(--bg) 280px) fixed;color:var(--ink);line-height:1.5;padding-bottom:84px}
+header{padding:calc(env(safe-area-inset-top,0px) + 14px) 16px 4px;max-width:720px;margin:auto;text-align:center}
+.brand{display:inline-flex;align-items:center;gap:8px;direction:ltr}
+.brand svg{flex:none}
+.bn{font-size:34px;font-weight:800;color:var(--navy);letter-spacing:-1px;line-height:1}
+.bn em{font-style:normal;background:linear-gradient(90deg,#0FA3A3,#2BA84A);-webkit-background-clip:text;background-clip:text;color:transparent}
+.tag{color:var(--navy);font-weight:700;font-size:15px;margin-top:6px}
+.tag:after{content:"";display:block;width:64px;height:3px;border-radius:2px;background:linear-gradient(90deg,#0FA3A3,#2BA84A);margin:6px auto 0}
+h1{margin:0}
+main{padding:8px 14px 20px;max-width:720px;margin:auto}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px;margin-bottom:14px;box-shadow:var(--sh)}
+.mut{color:var(--mut);font-size:13px}
+label{display:block;font-size:13px;color:var(--mut);margin:12px 0 4px}
+input,select,textarea{width:100%;padding:12px;border:1px solid var(--line);border-radius:12px;font:inherit;background:#fff;color:var(--ink)}
+button{font:inherit;border:0;border-radius:12px;padding:13px 16px;background:linear-gradient(135deg,var(--acc),var(--teal));color:#fff;font-weight:600;cursor:pointer}
+button:disabled{opacity:.6}
+button.sec{background:#E6EEF6;color:var(--navy)}
+button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid #7fb6d9;outline-offset:1px}
+.row{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}.row>*{flex:1}
+nav{position:fixed;bottom:0;inset-inline:0;display:flex;background:#fff;border-top:1px solid var(--line);box-shadow:0 -4px 16px rgba(11,42,91,.06);padding-bottom:env(safe-area-inset-bottom,0px)}
+nav button{flex:1;background:none;color:var(--mut);border-radius:0;padding:9px 0 8px;font-size:12px;font-weight:600;display:flex;flex-direction:column;align-items:center;gap:2px;border-top:3px solid transparent}
+nav button.on{color:var(--acc);border-top-color:var(--teal)}
+label.fb{position:relative;overflow:hidden;text-align:center;background:#E6EEF6;color:var(--navy);font-weight:600;border-radius:12px;padding:13px 10px;margin:0;font-size:16px}
+label.fb input{position:absolute;inset:0;width:100%;height:100%;opacity:0;padding:0;cursor:pointer}
+.thumbs{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.th{position:relative;width:84px;height:84px}
+.th img{width:100%;height:100%;object-fit:cover;border-radius:8px;border:1px solid var(--line)}
+.th b{position:absolute;top:-6px;left:-6px;width:24px;height:24px;border-radius:50%;background:var(--r);color:#fff;text-align:center;line-height:24px;font-size:14px;cursor:pointer}
+.top{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.big{min-width:78px;height:78px;border-radius:50%;color:#fff;font-size:24px;font-weight:800;display:flex;align-items:center;justify-content:center;border:4px solid rgba(255,255,255,.55);outline:3px solid currentColor}
+.s{padding:10px 0;border-top:1px solid var(--line)}.s:first-child{border-top:0;padding-top:0}
+.sh{display:flex;justify-content:space-between;align-items:baseline}
+.bar{height:8px;border-radius:4px;background:#e7ecef;margin:6px 0}.bar i{display:block;height:100%;border-radius:4px}
+.act{display:flex;gap:8px;padding:8px 0;border-top:1px solid var(--line);align-items:flex-start}.act:first-of-type{border-top:0}
+.pri{flex:none;font-size:12px;font-weight:700;color:#fff;border-radius:6px;padding:2px 8px;margin-top:2px}
+.tag{font-size:12px;color:var(--acc);font-weight:700}
+.ph{position:relative;margin-bottom:10px}.ph img{width:100%;display:block;border-radius:8px}
+.mk{position:absolute;width:26px;height:26px;border-radius:50%;background:var(--r);color:#fff;font-style:normal;font-weight:700;font-size:13px;text-align:center;line-height:26px;transform:translate(-50%,-50%);border:2px solid #fff;box-shadow:0 0 0 1px var(--r)}
+.lg{display:flex;gap:8px;padding:4px 0}.lg i{flex:none;width:22px;height:22px;border-radius:50%;background:var(--r);color:#fff;font-style:normal;font-size:12px;text-align:center;line-height:22px}
+svg.lay{width:100%;height:auto;background:#f8fafb;border:1px solid var(--line);border-radius:8px}
+.h{display:flex;gap:12px;align-items:center;padding:12px 0;border-top:1px solid var(--line);cursor:pointer}.h:first-child{border-top:0}
+.pb{flex:none;min-width:56px;text-align:center;color:#fff;font-weight:700;border-radius:8px;padding:6px 0}
+.h>div:nth-child(2){flex:1}
+.x{background:none;color:var(--r);padding:8px;font-size:18px}
+.banner{display:flex;gap:12px;align-items:center;background:#fff;border:1.5px solid var(--bc);border-radius:16px;padding:14px;margin-bottom:14px;box-shadow:var(--sh)}
+.banner .bi{flex:none;width:44px;height:44px;border-radius:50%;background:var(--bc);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:20px}
+.tiles{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:14px}
+button.tile{background:#fff;color:var(--navy);border:1px solid var(--line);box-shadow:var(--sh);border-radius:16px;padding:14px 4px;display:flex;flex-direction:column;align-items:center;gap:2px}
+button.tile svg{color:var(--acc)}button.tile b{font-size:16px}button.tile span{font-size:12px;color:var(--mut);font-weight:600}
+.sgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.sc{display:flex;align-items:center;gap:10px;font-weight:700;color:var(--navy);background:#F6FAFD;border:1px solid var(--line);border-radius:14px;padding:10px}
+.sc i{flex:none;width:34px;height:34px;border-radius:50%;color:#fff;font-style:normal;display:flex;align-items:center;justify-content:center;font-weight:800}
+.sec-t{font-weight:800;color:var(--navy);margin:0 0 10px;font-size:17px}
+@media print{nav,header,.noprint{display:none!important}body{background:#fff;padding:0}.card{break-inside:avoid}}
+</style>
+</head>
+<body>
+<header><h1 class="brand"><svg width="46" height="46" viewBox="0 0 48 48" aria-hidden="true"><defs><g id="t"><rect x="21" y="2" width="6" height="9" rx="1.5"/></g></defs><g fill="#0B2A5B"><circle cx="24" cy="24" r="16"/><use href="#t"/><use href="#t" transform="rotate(45 24 24)"/><use href="#t" transform="rotate(90 24 24)"/><use href="#t" transform="rotate(135 24 24)"/><use href="#t" transform="rotate(180 24 24)"/><use href="#t" transform="rotate(225 24 24)"/><use href="#t" transform="rotate(270 24 24)"/><use href="#t" transform="rotate(315 24 24)"/></g><circle cx="24" cy="24" r="11.5" fill="#fff"/><text x="24" y="28.6" text-anchor="middle" font-size="12.5" font-weight="800" fill="#0B2A5B" font-family="Arial,sans-serif">6S</text></svg><span class="bn">6S <em>AI</em></span></h1><div class="tag">מצוינות תפעולית מתחילה בשטח</div></header>
+<main>
+<section id="v-home"></section>
+<section id="v-new" hidden>
+ <div class="card">
+  <label for="area">שם האזור</label><input id="area" autocomplete="off" placeholder="למשל: עמדת אריזה 3">
+  <label for="env">סוג סביבה</label>
+  <select id="env" autocomplete="off"><option>מפעל / קו ייצור</option><option>מחסן</option><option>משרד</option><option>סדנת אחזקה</option><option>מעבדה</option><option>בית / סדנה ביתית</option><option>אחר</option></select>
+  <label for="note">הערה חופשית (אופציונלי)</label><textarea id="note" rows="2" autocomplete="off" placeholder="מה חשוב לדעת על האזור? למשל: עובדים בשתי משמרות"></textarea>
+  <label>תמונות של האזור (עד 6)</label>
+  <div class="row" style="margin-top:0">
+   <label class="fb">📷 צלם<input id="cam" type="file" accept="image/*" capture="environment"></label>
+   <label class="fb">🖼 מהגלריה<input id="files" type="file" accept="image/*" multiple></label>
+  </div>
+  <div class="thumbs" id="thumbs"></div>
+ </div>
+ <button id="go" style="width:100%;padding:15px">נתח את האזור</button>
+ <p id="err" style="color:var(--r)" hidden></p>
+</section>
+<section id="v-res" hidden></section>
+<section id="v-hist" hidden></section>
+<section id="v-set" hidden>
+ <div class="card">
+  <label for="key">מפתח Gemini API</label><input id="key" type="text" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" style="-webkit-text-security:disc;text-security:disc" placeholder="AIza...">
+  <label for="mod">מודל לניתוח</label><input id="mod" dir="ltr" value="gemini-3.5-flash-lite" autocomplete="off">
+  <label for="modi">מודל להפקת תמונת "אחרי" (בתשלום בצד גוגל)</label><input id="modi" dir="ltr" value="gemini-3.1-flash-image" autocomplete="off">
+  <div class="row"><button id="save">שמור הגדרות</button></div>
+  <p class="mut">המפתח והנתונים נשמרים רק בדפדפן שלך, במכשיר הזה. התמונות נשלחות ל-Google (Gemini) לצורך הניתוח בלבד.</p>
+ </div>
+</section>
+</main>
+<nav>
+ <button data-v="home" data-ic="home" class="on">בית</button>
+ <button data-v="new" data-ic="cam">בדיקה חדשה</button>
+ <button data-v="hist" data-ic="doc">דוחות</button>
+ <button data-v="set" data-ic="set">הגדרות</button>
+</nav>
+<script>
+const S=[["sort","מיון"],["set","סידור"],["shine","ניקיון"],["std","תקנון"],["sus","משמעת"],["safe","בטיחות"]];
+const $=id=>document.getElementById(id);
+const esc=s=>String(s??'').replace(/[&<>\"]/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[m]));
+const col=s=>s>=4?'var(--g)':s>=3?'var(--y)':'var(--r)';
+const pc=p=>p>=80?'var(--g)':p>=60?'var(--y)':'var(--r)';
+const pct=r=>Math.round(r.scores.reduce((a,x)=>a+(+x.score||0),0)/r.scores.length/5*100);
+const sn=k=>(S.find(x=>x[0]===k)||[0,k])[1];
+let photos=[],cur=null;
+
+/* storage */
+const db=new Promise((res,rej)=>{const r=indexedDB.open('s6',1);r.onupgradeneeded=()=>r.result.createObjectStore('c',{keyPath:'id'});r.onsuccess=()=>res(r.result);r.onerror=()=>rej(r.error)});
+const tx=async(m,f)=>{const d=await db;return new Promise((res,rej)=>{const t=d.transaction('c',m);const q=f(t.objectStore('c'));t.oncomplete=()=>res(q.result);t.onerror=()=>rej(t.error)})};
+const put=c=>tx('readwrite',s=>s.put(c)),all=()=>tx('readonly',s=>s.getAll()),del=id=>tx('readwrite',s=>s.delete(id));
+
+/* nav */
+function resetForm(){$('area').value='';$('env').selectedIndex=0;$('note').value='';photos=[];thumbs();$('err').hidden=true}
+function go(v){['home','new','res','hist','set'].forEach(n=>$('v-'+n).hidden=n!==v);
+ document.querySelectorAll('nav button').forEach(b=>b.classList.toggle('on',b.dataset.v===(v==='res'?'new':v)));
+ if(v==='hist')hist();if(v==='home')renderHome();window.scrollTo(0,0)}
+document.querySelectorAll('nav button').forEach(b=>b.onclick=()=>{if(b.dataset.v==='new')resetForm();go(b.dataset.v)});
+
+/* pdf generation (lazy-loaded libs) */
+function loadScript(src){return new Promise((res,rej)=>{const s=document.createElement('script');s.src=src;s.onload=res;s.onerror=()=>rej(new Error('טעינת ספרייה נכשלה, בדוק חיבור לאינטרנט'));document.head.appendChild(s)})}
+async function loadLibs(){
+ if(!window.html2canvas)await loadScript('https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js');
+ if(!window.jspdf)await loadScript('https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js');
+}
+async function makePdfBlob(el){
+ await loadLibs();
+ const canvas=await html2canvas(el,{scale:2,backgroundColor:'#ffffff',useCORS:true});
+ const {jsPDF}=window.jspdf;
+ const pdf=new jsPDF({unit:'pt',format:'a4'});
+ const pageW=pdf.internal.pageSize.getWidth(),pageH=pdf.internal.pageSize.getHeight();
+ const ratio=pageW/canvas.width,pageCanvasH=Math.floor(pageH/ratio);
+ let y=0,first=true;
+ while(y<canvas.height){
+  const sliceH=Math.min(pageCanvasH,canvas.height-y);
+  const slice=document.createElement('canvas');slice.width=canvas.width;slice.height=sliceH;
+  slice.getContext('2d').drawImage(canvas,0,y,canvas.width,sliceH,0,0,canvas.width,sliceH);
+  if(!first)pdf.addPage();
+  pdf.addImage(slice.toDataURL('image/jpeg',.85),'JPEG',0,0,pageW,sliceH*ratio);
+  y+=sliceH;first=false;
+ }
+ return pdf.output('blob');
+}
+function downloadBlob(blob,name){const url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download=name;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),4000)}
+async function fetchTimeout(url,opts,ms){
+ const ac=new AbortController(),t=setTimeout(()=>ac.abort(),ms||55000);
+ try{return await fetch(url,{...opts,signal:ac.signal})}
+ catch(e){if(e.name==='AbortError')throw new Error('השרת לא הגיב בזמן סביר. נסה שוב, או נסה עם פחות תמונות.');throw new Error('בעיית תקשורת. בדוק חיבור לאינטרנט ונסה שוב.')}
+ finally{clearTimeout(t)}
+}
+
+/* photos */
+const shrink=f=>new Promise(res=>{const i=new Image();i.onload=()=>{const k=Math.min(1,1280/Math.max(i.width,i.height)),c=document.createElement('canvas');c.width=i.width*k;c.height=i.height*k;c.getContext('2d').drawImage(i,0,0,c.width,c.height);URL.revokeObjectURL(i.src);res(c.toDataURL('image/jpeg',.8))};i.src=URL.createObjectURL(f)});
+function thumbs(){$('thumbs').innerHTML=photos.map((p,i)=>`<div class="th"><img src="${p}" alt=""><b data-i="${i}" role="button" aria-label="הסר">×</b></div>`).join('');
+ $('thumbs').querySelectorAll('b').forEach(b=>b.onclick=()=>{photos.splice(+b.dataset.i,1);thumbs()})}
+['cam','files'].forEach(id=>$(id).onchange=async e=>{for(const f of e.target.files){if(photos.length<6)photos.push(await shrink(f))}e.target.value='';thumbs()});
+
+/* settings */
+$('key').value=localStorage.getItem('k')||'AIzaSyD8a3jiA79Z08xz1bJ_GB6EaDm_EIXrkeM';$('mod').value=localStorage.getItem('m')||'gemini-3.5-flash-lite';$('modi').value=localStorage.getItem('mi')||'gemini-3.1-flash-image';
+$('save').onclick=()=>{
+ localStorage.setItem('k',$('key').value.trim());localStorage.setItem('m',$('mod').value.trim()||'gemini-3.5-flash-lite');localStorage.setItem('mi',$('modi').value.trim()||'gemini-3.1-flash-image');
+ go('new')
+};
+
+
+/* icons + home */
+const IC={home:'<path d="M3 11l9-8 9 8v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/>',cam:'<path d="M4 8h3l2-3h6l2 3h3a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1z"/><circle cx="12" cy="14" r="4"/>',doc:'<path d="M6 3h9l5 5v13a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1z"/><path d="M14 3v6h6M8 13h8M8 17h8"/>',set:'<path d="M4 7h10M18 7h2M4 17h2M10 17h10"/><circle cx="16" cy="7" r="2"/><circle cx="8" cy="17" r="2"/>',ai:'<rect x="6" y="6" width="12" height="12" rx="2"/><path d="M9 2v4M15 2v4M9 18v4M15 18v4M2 9h4M2 15h4M18 9h4M18 15h4"/>',gauge:'<path d="M4 17a8 8 0 1 1 16 0"/><path d="M12 17l4-5"/>'};
+const ico=(n,z=26)=>`<svg viewBox="0 0 24 24" width="${z}" height="${z}" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${IC[n]}</svg>`;
+document.querySelectorAll('nav button').forEach(b=>b.insertAdjacentHTML('afterbegin',ico(b.dataset.ic,24)));
+const SC=['#1668C1','#0E8F9A','#2BA84A','#22B8B0','#7CB342','#1B4F9C'];
+async function renderHome(){
+ const l=(await all()).sort((a,b)=>b.date-a.date),el=$('v-home'),last=l[0];
+ let o='';
+ if(last){const p=pct(last.result),c=pc(p),m=p>=80?'הסביבה מסודרת ובטוחה':p>=60?'נדרשים שיפורים מסוימים':'נדרשת התערבות בסביבה';
+  o+=`<div class="banner" style="--bc:${c}"><div class="bi">${p>=80?'✓':'!'}</div><div><b>${m}</b><div class="mut">${esc(last.area)} · ניתוח אחרון: ${new Date(last.date).toLocaleDateString('he-IL')}</div></div></div>`}
+ else o+=`<div class="banner" style="--bc:var(--acc)"><div class="bi">6S</div><div><b>ברוכים הבאים ל-6S AI</b><div class="mut">צלמו את האזור הראשון וקבלו ניתוח תוך דקה</div></div></div>`;
+ o+=`<div class="tiles"><button class="tile" data-g="new">${ico('cam')}<b>צילום</b><span>תיעוד שטח</span></button><button class="tile" data-g="hist">${ico('ai')}<b>ניתוח</b><span>${l.length} בדיקות</span></button><button class="tile" data-g="last">${ico('gauge')}<b>ציון</b><span>${last?pct(last.result)+'/100':'—'}</span></button></div>`;
+ o+=`<div class="card"><p class="sec-t">שיטת 6S</p><div class="sgrid">${S.map((x,i)=>`<div class="sc"><i style="background:${SC[i]}">${i+1}</i>${x[1]}</div>`).join('')}</div></div>`;
+ if(l.length)o+=`<div class="card"><p class="sec-t">בדיקות אחרונות</p>`+l.slice(0,3).map(c=>{const p=pct(c.result);return `<div class="h" data-id="${c.id}"><div class="pb" style="background:${pc(p)}">${p}%</div><div><b>${esc(c.area)}</b><div class="mut">${new Date(c.date).toLocaleDateString('he-IL')}</div></div></div>`}).join('')+'</div>';
+ o+=`<button style="width:100%;padding:15px" data-g="new">בדיקה חדשה</button>`;
+ el.innerHTML=o;
+ el.querySelectorAll('[data-g]').forEach(b=>b.onclick=()=>{const g=b.dataset.g;if(g==='new'){resetForm();go('new')}else if(g==='hist')go('hist');else if(last)show(last);else{resetForm();go('new')}});
+ el.querySelectorAll('.h').forEach(h=>h.onclick=()=>show(l.find(c=>c.id==h.dataset.id)));
+}
+
+/* analyze */
+const prompt=(a,e,n,c)=>`אתה מומחה למצוינות תפעולית ולמתודולוגיית 6S (מיון, סידור, ניקיון, תקנון, משמעת עצמית, בטיחות). נתח את ${c} התמונות, כולן של אותו אזור: "${a}". סוג הסביבה: ${e}. הערת המשתמש: ${n||'אין'}.
+דרג כל S מ-1 עד 5 (5 = מצוין) לפי מה שנראה בפועל בתמונות בלבד, והסבר בקצרה. הצע פעולות קונקרטיות וישימות, ובנה הצעה לפריסה משופרת.
+החזר JSON בלבד, בלי טקסט נוסף ובלי גדרות קוד, בעברית, במבנה הזה:
+{"summary":"סיכום בשתי שורות","scores":[{"k":"sort","score":3,"why":"..."}],"actions":[{"s":"sort","p":1,"t":"פעולה"}],"marks":[{"img":0,"x":42,"y":60,"s":"shine","t":"תיאור קצר"}],"layout":{"w":100,"h":60,"zones":[{"n":"שם אזור משנה","x":5,"y":5,"w":30,"h":20,"t":"הערה קצרה"}]}}
+scores: בדיוק 6 פריטים, k לפי הסדר: sort,set,shine,std,sus,safe. actions: p=1 דחוף, 2 חשוב, 3 נחמד. marks: 3 עד 8 סימונים של בעיות בתמונות; img הוא אינדקס התמונה מ-0, x ו-y באחוזים מפינה שמאל עליון של התמונה. layout: תרשים מלמעלה של הפריסה המוצעת, 5 עד 8 אזורי משנה בלי חפיפה, בתוך w×h.`;
+$('go').onclick=async()=>{
+ const key=localStorage.getItem('k');
+ const area=$('area').value.trim(),er=$('err');er.hidden=true;
+ const fail=m=>{er.textContent=m;er.hidden=false};
+ if(!key)return go('set');
+ if(!area)return fail('הזן שם אזור.');
+ if(!photos.length)return fail('הוסף לפחות תמונה אחת.');
+ const btn=$('go');btn.disabled=true;btn.textContent='מנתח... זה לוקח כחצי דקה';
+ try{
+  const parts=photos.map(p=>({inline_data:{mime_type:'image/jpeg',data:p.split(',')[1]}}));
+  parts.push({text:prompt(area,$('env').value,$('note').value.trim(),photos.length)});
+  const mdl=localStorage.getItem('m')||'gemini-3.5-flash-lite';
+  const r=await fetchTimeout(`https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(mdl)}:generateContent?key=${encodeURIComponent(key)}`,{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({contents:[{parts}],generationConfig:{responseMimeType:'application/json'}})});
+  const j=await r.json();if(!r.ok)throw new Error(j.error?.message||('שגיאה '+r.status));
+  const t=(j.candidates?.[0]?.content?.parts||[]).map(b=>b.text||'').join('');
+  if(!t)throw new Error('לא התקבלה תשובה, נסה שוב.');
+  const res=JSON.parse(t.slice(t.indexOf('{'),t.lastIndexOf('}')+1));
+  if(!Array.isArray(res.scores)||!res.scores.length)throw new Error('תשובה לא תקנון, נסה שוב.');
+  const c={id:Date.now(),date:Date.now(),area,env:$('env').value,note:$('note').value.trim(),photos:[...photos],result:res};
+  await put(c);photos=[];thumbs();$('area').value='';$('env').selectedIndex=0;$('note').value='';await show(c);
+ }catch(e){fail(e.message)}
+ btn.disabled=false;btn.textContent='נתח את האזור';
+};
+
+/* after-image generation (Gemini image model, paid feature) */
+async function genAfter(c){
+ const key=localStorage.getItem('k');if(!key)return go('set');
+ const btn=$('afterBtn'),box=$('afterBox');
+ btn.disabled=true;btn.textContent='מייצר תמונה... זה יכול לקחת עד דקה';box.innerHTML='';
+ try{
+  const mdl=localStorage.getItem('mi')||'gemini-3.1-flash-image';
+  const acts=(c.result.actions||[]).map(a=>a.t).join('; ')||'אין';
+  const marksTxt=(c.result.marks||[]).map(m=>m.t).join('; ')||'אין בעיות ספציפיות שסומנו';
+  const txt=`ערוך את התמונה הזו של סביבת עבודה כך שתשקף מצב אחרי שיפור מלא לפי שיטת 6S (מיון, סידור, ניקיון, תקנון, משמעת עצמית, בטיחות), ברמה שמקבילה לציון 100% בכל קטגוריה. שמור על אותו חדר, אותה זווית צילום ואותם רהיטים וחפצים עיקריים, ותקן רק את הבעיות. בעיות שזוהו: ${marksTxt}. פעולות מומלצות ליישום אם רלוונטי לתמונה: ${acts}. התוצאה צריכה להיראות תמונת צילום מציאותית, נקייה, מסודרת ובטוחה, בלי טקסט או סימונים על גבי התמונה.`;
+  const parts=[{inline_data:{mime_type:'image/jpeg',data:c.photos[0].split(',')[1]}},{text:txt}];
+  const r=await fetchTimeout(`https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(mdl)}:generateContent?key=${encodeURIComponent(key)}`,{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({contents:[{parts}],generationConfig:{responseModalities:['IMAGE']}})},75000);
+  const j=await r.json();if(!r.ok)throw new Error(j.error?.message||('שגיאה '+r.status));
+  const ip=(j.candidates?.[0]?.content?.parts||[]).find(x=>x.inline_data||x.inlineData);
+  const idata=ip&&(ip.inline_data||ip.inlineData);
+  if(!idata)throw new Error('לא התקבלה תמונה. ייתכן שנדרשת הפעלת חיוב (billing) בחשבון Google לתכונת יצירת תמונות.');
+  const durl=`data:${idata.mime_type||idata.mimeType||'image/png'};base64,${idata.data}`;
+  c.after=durl;await put(c);
+  box.innerHTML=`<div class="mut" style="margin-bottom:6px">לפני ← אחרי (הדמיית AI, להמחשה בלבד)</div><div style="display:flex;gap:8px"><img src="${c.photos[0]}" alt="לפני" style="width:50%;border-radius:8px"><img src="${durl}" alt="אחרי" style="width:50%;border-radius:8px"></div>`;
+ }catch(e){box.innerHTML=`<p style="color:var(--r);margin:0">${esc(e.message)}</p>`}
+ btn.disabled=false;btn.textContent='🖼 הפק תמונה של אחרי השיפור';
+}
+
+/* results */
+const PRI={1:['דחוף','var(--r)'],2:['חשוב','var(--y)'],3:['נחמד','#7b8994']};
+async function show(c){
+ cur=c;const r=c.result,p=pct(r);
+ const h=(await all()).filter(x=>x.id!==c.id&&x.area.trim()===c.area.trim()&&x.date<c.date).sort((a,b)=>b.date-a.date)[0];
+ const d=h?p-pct(h.result):null;
+ let o=`<div id="rep"><div class="card"><div class="top"><div><b style="font-size:18px">${esc(c.area)}</b><div class="mut">${esc(c.env)}</div><div class="mut">${new Date(c.date).toLocaleDateString('he-IL')}</div></div><div class="big" style="background:${pc(p)};color:${pc(p)}"><span style="color:#fff">${p}%</span></div></div>`;
+ if(d!==null)o+=`<div class="mut" style="margin-top:8px">לעומת הבדיקה הקודמת באזור: <b style="color:${d>=0?'var(--g)':'var(--r)'}">${d>0?'עלייה של '+d:d<0?'ירידה של '+-d:'ללא שינוי'}${d?'%':''}</b></div>`;
+ o+=`<p style="margin-bottom:0">${esc(r.summary)}</p></div><div class="card">`;
+ o+=S.map(([k,n])=>{const x=r.scores.find(z=>z.k===k)||{score:0,why:''},pv=h&&h.result.scores.find(z=>z.k===k),dd=pv?x.score-pv.score:0;
+  return `<div class="s"><div class="sh"><b>${n}</b><span style="color:${col(x.score)};font-weight:700">${x.score}/5${dd?` <small>(${dd>0?'+':''}${dd})</small>`:''}</span></div><div class="bar"><i style="width:${x.score/5*100}%;background:${col(x.score)}"></i></div><div class="mut">${esc(x.why)}</div></div>`}).join('')+'</div>';
+ const acts=(r.actions||[]).slice().sort((a,b)=>a.p-b.p);
+ o+=`<div class="card"><b>פעולות מומלצות</b><div style="margin-top:6px">`+acts.map(a=>{const q=PRI[a.p]||PRI[3];return `<div class="act"><span class="pri" style="background:${q[1]}">${q[0]}</span><div><span class="tag">${sn(a.s)}</span><div>${esc(a.t)}</div></div></div>`}).join('')+'</div></div>';
+ const mk=r.marks||[];
+ o+=`<div class="card"><b>בעיות שסומנו בתמונות</b><div style="margin-top:10px">`+c.photos.map((src,i)=>`<div class="ph"><img src="${src}" alt="">${mk.map((m,j)=>m.img===i?`<i class="mk" style="left:${+m.x}%;top:${+m.y}%">${j+1}</i>`:'').join('')}</div>`).join('')+mk.map((m,j)=>`<div class="lg"><i>${j+1}</i><div><span class="tag">${sn(m.s)}</span> ${esc(m.t)}</div></div>`).join('')+'</div></div>';
+ const L=r.layout;
+ if(L&&L.zones&&L.zones.length){const W=+L.w||100,H=+L.h||60,pal=['#dbeaf5','#e2f1e6','#fbf0d0','#f3dede','#e8e3f3','#dff0ef','#f1e7da','#e9edd6'];
+  o+=`<div class="card"><b>פריסה מוצעת (מבט מלמעלה)</b><div style="margin:10px 0"><svg class="lay" viewBox="0 0 ${W} ${H}" role="img" aria-label="פריסה מוצעת">`+L.zones.map((z,i)=>`<rect x="${z.x}" y="${z.y}" width="${z.w}" height="${z.h}" rx="1.2" fill="${pal[i%pal.length]}" stroke="#7d93a3" stroke-width=".35"/><text x="${+z.x+z.w/2}" y="${+z.y+z.h/2+1}" font-size="3.2" text-anchor="middle" fill="#14202b">${esc(z.n)}</text>`).join('')+'</svg></div>'+L.zones.map(z=>`<div class="lg"><div><b>${esc(z.n)}</b>: ${esc(z.t)}</div></div>`).join('')+'</div>';}
+ o+=`<div class="card noprint"><b>הדמיית "אחרי" (AI)</b><div class="mut" style="margin:4px 0 10px">תמונה שנוצרת על ידי בינה מלאכותית, להמחשה בלבד — לא תוצאה מובטחת. התכונה בתשלום בצד גוגל (לא כלולה בשכבה החינמית).</div><button class="sec" id="afterBtn" style="width:100%">🖼 הפק תמונה של אחרי השיפור</button><div id="afterBox" style="margin-top:10px">${c.after?`<div style="display:flex;gap:8px"><img src="${c.photos[0]}" alt="לפני" style="width:50%;border-radius:8px"><img src="${c.after}" alt="אחרי" style="width:50%;border-radius:8px"></div>`:''}</div></div>`;
+ o+='</div>';
+ o+=`<div class="row noprint"><button id="pdf">ייצוא PDF</button><button class="sec" id="shr">שיתוף PDF</button><button class="sec" id="nw">בדיקה חדשה</button></div>`;
+ $('v-res').innerHTML=o;go('res');
+ $('pdf').onclick=()=>window.print();
+ $('nw').onclick=()=>{resetForm();go('new')};
+ $('afterBtn').onclick=()=>genAfter(c);
+ $('shr').onclick=async()=>{
+  const btn=$('shr'),orig=btn.textContent;btn.disabled=true;btn.textContent='מכין PDF...';
+  const fname=(c.area||'דוח').replace(/[\\/:*?"<>|]/g,'').trim()+'.pdf';
+  const stxt=`סורק 6S: ${c.area}\nציון כללי: ${p}%\n`+S.map(([k,n])=>`${n}: ${(r.scores.find(z=>z.k===k)||{}).score}/5`).join('\n')+'\n\nפעולות:\n'+acts.map(a=>`- (${(PRI[a.p]||PRI[3])[0]}) ${a.t}`).join('\n');
+  try{
+   const blob=await makePdfBlob($('rep'));
+   const file=new File([blob],fname,{type:'application/pdf'});
+   if(navigator.canShare&&navigator.canShare({files:[file]})){
+    await navigator.share({files:[file],title:'סורק 6S - '+c.area,text:stxt});
+   }else{
+    downloadBlob(blob,fname);
+    alert('הדוח נשמר כקובץ PDF. אפשר לשתף אותו מתוך אפליקציית הקבצים או ההורדות.');
+   }
+  }catch(e){
+   if(e && e.name!=='AbortError'){
+    try{navigator.share?await navigator.share({title:'סורק 6S',text:stxt}):(await navigator.clipboard.writeText(stxt),alert('לא הצלחתי להכין PDF, אז הסיכום הועתק כטקסט.'))}catch(e2){}
+   }
+  }
+  btn.disabled=false;btn.textContent=orig;
+ };
+}
+
+/* history */
+async function hist(){
+ const l=(await all()).sort((a,b)=>b.date-a.date),el=$('v-hist');
+ if(!l.length){el.innerHTML='<div class="card mut">עוד אין בדיקות. צלם אזור בלשונית "בדיקה חדשה" והתוצאות יישמרו כאן.</div>';return}
+ el.innerHTML='<div class="card">'+l.map(c=>{const p=pct(c.result),pv=l.find(x=>x.id!==c.id&&x.area.trim()===c.area.trim()&&x.date<c.date),d=pv?p-pct(pv.result):null;
+  return `<div class="h" data-id="${c.id}"><div class="pb" style="background:${pc(p)}">${p}%</div><div><b>${esc(c.area)}</b><div class="mut">${new Date(c.date).toLocaleDateString('he-IL')}${d!==null?' | '+(d>0?'עלייה של '+d:d<0?'ירידה של '+-d:'ללא שינוי')+(d?'%':''):''}</div></div><button class="x" data-del="${c.id}" aria-label="מחק">🗑</button></div>`}).join('')+'</div>';
+ el.querySelectorAll('.h').forEach(h=>h.onclick=e=>{if(e.target.dataset.del)return;show(l.find(c=>c.id==h.dataset.id))});
+ el.querySelectorAll('[data-del]').forEach(b=>b.onclick=async()=>{if(confirm('למחוק את הבדיקה?')){await del(+b.dataset.del);hist()}});
+}
+
+go('home');
+</script>
+</body>
+</html>
